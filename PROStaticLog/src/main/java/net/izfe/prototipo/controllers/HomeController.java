@@ -1,7 +1,7 @@
 package net.izfe.prototipo.controllers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,10 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     
 	
-	private static final Log log = LogFactory.getLog(HomeController.class);
+	private static final Logger  log = LoggerFactory.getLogger(HomeController.class);
 	
     @RequestMapping("home")
     public ModelAndView home() {
+        
+        log.debug("mensaje de error");
+
         return new ModelAndView("home");
     }
     @RequestMapping("/")

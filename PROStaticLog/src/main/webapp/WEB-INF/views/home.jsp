@@ -8,6 +8,9 @@
 <body>
     <h1>Welcome to the home page.</h1>
     
-
+	<form action="${pageContext.request.contextPath}/logout" method="post">
+        <input type="submit" value="Logout" />
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+    </form>
 </body>
 </html>
