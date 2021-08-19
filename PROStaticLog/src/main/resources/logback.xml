@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<Loggers>
+	        <Logger name="org.springframework.beans.factory" level="ERROR"/>
+	        <Root level="error">
+	          <AppenderRef ref="STDOUT"/>
+	        </Root>
+	  </Loggers>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %-5level %logger{36} - %msg%n
+	                </Pattern>
+		</encoder>
+	 </appender>
+ 
+	<!-- Crea el fichero en la raiz fuera del proyecto -->
+	<appender name="FILE"
+	class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>/cardiorunning/tomcat/log/mus.log</file>
+	<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	   <Pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+           </Pattern>
+	</encoder>
+ 
+	<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		<FileNamePattern>/mus_tomcat.%i.log.zip</FileNamePattern>
+		<MinIndex>1</MinIndex>
+		<MaxIndex>10</MaxIndex>
+	</rollingPolicy>
+ 
+	<triggeringPolicy
+		class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		<MaxFileSize>2MB</MaxFileSize>
+	</triggeringPolicy>
+ 
+  </appender>
+
+	<logger name="mus" level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+
+	<logger name="org.hibernate.SQL" level="DEBUG">
+		<appender-ref ref="STDOUT" /> 
+	</logger>  
+	
+	<logger name="org.hibernate.type" level="DEBUG"	> 
+		<appender-ref ref="STDOUT" /> 
+	</logger>  
+	<logger name="org.hibernate" level="DEBUG"> 
+		<appender-ref ref="STDOUT" /> 
+	</logger> 
+
+	 
+	<logger name="org.springframework" level="ERROR">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="org.hibernate" level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 	
+ 
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
